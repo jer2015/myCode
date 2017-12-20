@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tom.business.mvc.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.tom.business.mvc.model.User">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="last_modify_password_time" jdbcType="TIMESTAMP" property="lastModifyPasswordTime" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="u_company" jdbcType="BIT" property="uCompany" />
+    <result column="u_store" jdbcType="BIT" property="uStore" />
+    <result column="store_id" jdbcType="CHAR" property="storeId" />
+    <result column="create_user_id" jdbcType="CHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_ip" jdbcType="VARCHAR" property="createIp" />
+    <result column="last_modify_user_id" jdbcType="CHAR" property="lastModifyUserId" />
+    <result column="last_modify_user_name" jdbcType="VARCHAR" property="lastModifyUserName" />
+    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="last_modify_ip" jdbcType="VARCHAR" property="lastModifyIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, password, salt, last_login_time, last_login_ip, last_modify_password_time, 
+    status, del_flag, u_company, u_store, store_id, create_user_id, create_user_name, 
+    create_time, create_ip, last_modify_user_id, last_modify_user_name, last_modify_time, 
+    last_modify_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from auth_user
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from auth_user
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tom.business.mvc.model.User">
+    insert into auth_user (id, user_name, password, 
+      salt, last_login_time, last_login_ip, 
+      last_modify_password_time, status, del_flag, 
+      u_company, u_store, store_id, create_user_id, 
+      create_user_name, create_time, create_ip, 
+      last_modify_user_id, last_modify_user_name, last_modify_time, 
+      last_modify_ip)
+    values (#{id,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
+      #{lastModifyPasswordTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, #{delFlag,jdbcType=BIT}, 
+      #{uCompany,jdbcType=BIT}, #{uStore,jdbcType=BIT}, #{storeId,jdbcType=CHAR}, #{createUserId,jdbcType=CHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createIp,jdbcType=VARCHAR}, 
+      #{lastModifyUserId,jdbcType=CHAR}, #{lastModifyUserName,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{lastModifyIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tom.business.mvc.model.User">
+    insert into auth_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="lastModifyPasswordTime != null">
+        last_modify_password_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="uCompany != null">
+        u_company,
+      </if>
+      <if test="uStore != null">
+        u_store,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createIp != null">
+        create_ip,
+      </if>
+      <if test="lastModifyUserId != null">
+        last_modify_user_id,
+      </if>
+      <if test="lastModifyUserName != null">
+        last_modify_user_name,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="lastModifyIp != null">
+        last_modify_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyPasswordTime != null">
+        #{lastModifyPasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="uCompany != null">
+        #{uCompany,jdbcType=BIT},
+      </if>
+      <if test="uStore != null">
+        #{uStore,jdbcType=BIT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=CHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=CHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createIp != null">
+        #{createIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyUserId != null">
+        #{lastModifyUserId,jdbcType=CHAR},
+      </if>
+      <if test="lastModifyUserName != null">
+        #{lastModifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyIp != null">
+        #{lastModifyIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tom.business.mvc.model.User">
+    update auth_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyPasswordTime != null">
+        last_modify_password_time = #{lastModifyPasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="uCompany != null">
+        u_company = #{uCompany,jdbcType=BIT},
+      </if>
+      <if test="uStore != null">
+        u_store = #{uStore,jdbcType=BIT},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=CHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=CHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createIp != null">
+        create_ip = #{createIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyUserId != null">
+        last_modify_user_id = #{lastModifyUserId,jdbcType=CHAR},
+      </if>
+      <if test="lastModifyUserName != null">
+        last_modify_user_name = #{lastModifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyIp != null">
+        last_modify_ip = #{lastModifyIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tom.business.mvc.model.User">
+    update auth_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      last_modify_password_time = #{lastModifyPasswordTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT},
+      del_flag = #{delFlag,jdbcType=BIT},
+      u_company = #{uCompany,jdbcType=BIT},
+      u_store = #{uStore,jdbcType=BIT},
+      store_id = #{storeId,jdbcType=CHAR},
+      create_user_id = #{createUserId,jdbcType=CHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_ip = #{createIp,jdbcType=VARCHAR},
+      last_modify_user_id = #{lastModifyUserId,jdbcType=CHAR},
+      last_modify_user_name = #{lastModifyUserName,jdbcType=VARCHAR},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      last_modify_ip = #{lastModifyIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
