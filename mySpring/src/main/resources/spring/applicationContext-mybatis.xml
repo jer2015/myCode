@@ -14,7 +14,7 @@
                 </value>
             </array>
         </property>
-        <property name="typeAliasesPackage" value="com.vpiaotong.**.model"/>
+        <property name="typeAliasesPackage" value="com.tom.**.model"/>
         <!--<property name="plugins">-->
             <!--<array>-->
                 <!--<bean class="com.github.pagehelper.PageHelper">-->
